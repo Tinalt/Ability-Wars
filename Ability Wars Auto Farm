@@ -1,0 +1,48 @@
+if game.PlaceId == 8260276694 then
+
+--Ability Wars Hub
+
+local kavoUi = loadstring(game:HttpGet("https://raw.githubusercontent.com/Toilatin/Insane-elevator/main/Insane2", true))()
+local window = kavoUi.CreateLib("Ability Wars","BloodTheme")
+
+--Autoexec
+
+game:GetService("TeleportService"):Teleport(10626447503)
+
+---Hi
+
+local Tab1 = window:NewTab("Main")
+local Tab1Section = Tab1:NewSection("Main")
+
+--
+
+Tab1Section = Tab1:NewSection("AutoFarm Punches")
+
+end
+
+if game.PlaceId == 10626447503 then
+
+--Ability Wars Team Battles Hub
+
+local kavoUi = loadstring(game:HttpGet("https://raw.githubusercontent.com/Toilatin/Insane-elevator/main/Insane2", true))()
+local window = kavoUi.CreateLib("Ability Wars | Team Battles","BloodTheme")
+
+--Autoexec
+
+for i,v in pairs(workspace:GetDescendants()) do
+        if v.Name == "Detect" and v:FindFirstChild("TouchInterest") then
+            v.Size = Vector3.new(2048,2048,2048)
+            v.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+        end
+    end
+
+---Hi
+
+local Tab1 = window:NewTab("Main")
+local Tab1Section = Tab1:NewSection("Main")
+
+--
+
+Tab1Section = Tab1:NewSection("Auto Farming")
+
+end
