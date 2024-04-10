@@ -1,0 +1,9 @@
+while true do
+    local partToDelete = game.Workspace:FindFirstChild("Model")
+    if partToDelete then
+        partToDelete:Destroy()
+    else
+        print("Part not found.")
+    end
+    wait(0.3)
+end
