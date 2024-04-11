@@ -4,7 +4,7 @@ local AkaliNotif = loadstring(game:HttpGet("https://raw.githubusercontent.com/Ki
 local Notify = AkaliNotif.Notify;
 Notify({
 Description = "Made By Tin";
-Title = "Anti Lag Ability Wars [Anti Snow]";
+Title = "Anti Lag Ability Wars Activated";
 Duration = 3;
 });
 
@@ -15,5 +15,11 @@ while true do
     else
         print("Part not found.")
     end
-    wait(0.3)
+   local partToDelete = game.Workspace:FindFirstChild("Effect")
+    if partToDelete then
+        partToDelete:Destroy()
+    else
+        print("Part not found.")
+    end
+    wait(0.05)
 end
