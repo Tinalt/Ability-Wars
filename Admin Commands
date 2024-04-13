@@ -1,0 +1,124 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Tinalt/Scripts/main/Chat%20Notification",true))()
+
+local prefix = "h "
+
+local function onChatted(message)
+    if message:sub(1, #prefix) == prefix then
+        local args = message:sub(#prefix + 1)
+        local size = tonumber(args)
+        if size then
+            _G.Disabled = true
+            _G.HeadSize = size
+        else
+            print("Invalid size. Please enter a number.")
+        end
+    end
+end
+
+game:GetService("Players").LocalPlayer.Chatted:Connect(onChatted)
+
+game:GetService('RunService').RenderStepped:Connect(function()
+    if _G.Disabled then
+        for _, v in ipairs(game:GetService('Players'):GetPlayers()) do
+            if v ~= game:GetService('Players').LocalPlayer then
+                pcall(function()
+                    v.Character.HumanoidRootPart.Size = Vector3.new(_G.HeadSize, _G.HeadSize, _G.HeadSize)
+                    v.Character.HumanoidRootPart.Transparency = 0.9
+                    v.Character.HumanoidRootPart.BrickColor = BrickColor.new("White")
+                    v.Character.HumanoidRootPart.Material = "Neon"
+                    v.Character.HumanoidRootPart.CanCollide = false
+                end)
+            end
+        end
+    end
+end)
+
+-- Function to send a chat notification
+local function sendChatNotification(message)
+    game:GetService("StarterGui"):SetCore("ChatMakeSystemMessage", {
+        Text = message,
+        Color = Color3.new(1, 1, 1), -- Set the color of the message
+        Font = Enum.Font.SourceSans, -- Set the font for the message
+        TextSize = 20, -- Increase the text size for the message
+    })
+end
+
+local prefix = "cmds" -- Change this to your desired prefix
+local commandExecuted = false -- Flag to track if the command has been executed
+
+local function onChatted(message)
+    if not commandExecuted and message:lower() == prefix then
+        sendChatNotification("Commands List:\nHitbox / h <size>\nDelete Boss Health Bar / db\nDelete Shop Gui / db")
+        commandExecuted = true
+        wait(1.3) -- Reset the flag after 1.3 seconds
+        commandExecuted = false
+    end
+end
+
+game:GetService("Players").LocalPlayer.Chatted:Connect(onChatted)
+
+local prefix = {"delete shop gui", "ds"} -- Change this to your desired prefixes
+local commandExecuted = false -- Flag to track if the command has been executed
+
+local function onChatted(message)
+    for _, p in ipairs(prefix) do
+        if not commandExecuted and message:lower() == p then
+            commandExecuted = true
+            wait(1.3) -- Reset the flag after 1.3 seconds
+            commandExecuted = false
+        end
+    end
+end
+
+game:GetService("Players").LocalPlayer.Chatted:Connect(onChatted)
+
+-- Example: Remove a GUI element named "Shop"
+local guiToRemove = game.Players.LocalPlayer.PlayerGui:FindFirstChild("Shop")
+if guiToRemove then
+    guiToRemove:Destroy()
+end
+
+local prefix = {"delete boss health bar", "db"} -- Change this to your desired prefixes
+local commandExecuted = false -- Flag to track if the command has been executed
+
+local function onChatted(message)
+    for _, p in ipairs(prefix) do
+        if not commandExecuted and message:lower() == p then
+            commandExecuted = true
+            wait(1.3) -- Reset the flag after 1.3 seconds
+            commandExecuted = false
+        end
+    end
+end
+
+game:GetService("Players").LocalPlayer.Chatted:Connect(onChatted)
+
+-- Example: Remove a GUI element named "ExampleGui"
+local guiToRemove = game.Players.LocalPlayer.PlayerGui:FindFirstChild("Boss Health Bar")
+if guiToRemove then
+    guiToRemove:Destroy()
+end
+
+-- Function to send a chat notification
+local function sendChatNotification(message)
+    game:GetService("StarterGui"):SetCore("ChatMakeSystemMessage", {
+        Text = message,
+        Color = Color3.new(1, 1, 1), -- Set the color of the message
+        Font = Enum.Font.SourceSans, -- Set the font for the message
+        TextSize = 20, -- Increase the text size for the message
+    })
+end
+
+local prefix = "db" -- Change this to your desired prefix
+local commandExecuted = false -- Flag to track if the command has been executed
+
+local function onChatted(message)
+    if not commandExecuted and message:lower() == prefix then
+        sendChatNotification("Boss Health Bar and Shop Gui has been deleted")
+        commandExecuted = true
+        wait(1.3) -- Reset the flag after 1.3 seconds
+        commandExecuted = false
+    end
+end
+
+game:GetService("Players").LocalPlayer.Chatted:Connect(onChatted)
