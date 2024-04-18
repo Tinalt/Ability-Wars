@@ -1,0 +1,29 @@
+local Players = game:GetService("Players")
+
+-- Function to disable collisions between two players
+local function disablePlayerCollisions(player1, player2)
+    local character1 = player1.Character
+    local character2 = player2.Character
+
+    if character1 and character2 then
+        for _, part1 in ipairs(character1:GetDescendants()) do
+            if part1:IsA("BasePart") then
+                for _, part2 in ipairs(character2:GetDescendants()) do
+                    if part2:IsA("BasePart") then
+                        part1.CanCollide = false
+                        part2.CanCollide = false
+                    end
+                end
+            end
+        end
+    end
+end
+
+-- Disable collisions between all players
+for _, player1 in ipairs(Players:GetPlayers()) do
+    for _, player2 in ipairs(Players:GetPlayers()) do
+        if player1 ~= player2 then
+            disablePlayerCollisions(player1, player2)
+        end
+    end
+end
